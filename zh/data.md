@@ -1,4 +1,4 @@
-# Data Pre-Fetching and State
+# 数据预拉取和状态
 
 ## Data Store
 

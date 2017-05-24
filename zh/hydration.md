@@ -1,4 +1,5 @@
 # Client Side Hydration
+# 客户端化合（混合）
 
 In `entry-client.js`, we are simply mounting the app with this line:
 
@@ -19,7 +20,7 @@ The `data-server-rendered` special attribute lets the client-side Vue know that 
 
 In development mode, Vue will assert the client-side generated virtual DOM tree matches the DOM structure rendered from the server. If there is a mismatch, it will bail hydration, discard existing DOM and render from scratch. **In production mode, this assertion is disabled for maximum performance.**
 
-### Hydration Caveats
+### 化合（混合）注意
 
 One thing to be aware of when using SSR + client hydration is some special HTML structures that may be altered by the browser. For example, when you write this in a Vue template:
 
