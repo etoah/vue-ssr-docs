@@ -233,4 +233,4 @@ const plugin = new VueSSRServerPlugin({
 })
 ```
 
-See [Build Configuration](./build-config.md) for more information.
+详情请查看[构建配置](./build-config.md).

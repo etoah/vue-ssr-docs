@@ -5,7 +5,7 @@
 ``` bash
 npm install vue vue-server-renderer --save
 ```
-教程中使用`NPM`, 但你也可使用`Yarn`
+教程中使用`NPM`, 但你同样可使用`Yarn`
 
 #### 注意
 - 推荐使用 Node.js 6+.
@@ -35,7 +35,7 @@ renderer.renderToString(app, (err, html) => {
 
 ## 和服务器整合
 
-It is pretty straightforward when used inside a Node.js server, for example [Express](https://expressjs.com/):
+`vue-server-renderer`可以优雅直接的用在`Node.js`服务器中， 比如[Express](https://expressjs.com/)：
 
 ``` bash
 npm install express --save
@@ -74,9 +74,9 @@ server.listen(8080)
 
 ## 用页面模板
 
-When you render a Vue app, the renderer only generates the markup of the app. In the example we had to wrap the output with an extra HTML page shell.
+当渲染Vue应用时， 只会生成应用的HTML标签.  在上面的例子中不得不用HTML页面的壳把输出的标签包起来。
 
-To simplify this, you can directly provide a page template when creating the renderer. Most of the time we will put the page template in its own file, e.g. `index.template.html`:
+为了简化， 在创建renderer时， 可以提供一个页面模板. 大多数情况会把页面模板放在单独的文件，比如：`index.template.html`:
 
 ``` html
 <!DOCTYPE html>
@@ -89,8 +89,9 @@ To simplify this, you can directly provide a page template when creating the ren
 ```
 
 Notice the `<!--vue-ssr-outlet-->` comment -- this is where your app's markup will be injected.
+注意`<!--vue-ssr-outlet-->` 注释 -- 这是应用标签注入的地方.
 
-We can then read and pass the file to the Vue renderer:
+然后就可以读文件内容并传入到Vue renderer中：
 
 ``` js
 const renderer = createRenderer({
@@ -104,7 +105,7 @@ renderer.renderToString(app, (err, html) => {
 
 ### 模板插值
 
-The template also supports simple interpolation. Given the following template:
+模板同样支持简单的插值语法， 如下面的模板： 
 
 ``` html
 <html>
@@ -120,9 +121,8 @@ The template also supports simple interpolation. Given the following template:
   </body>
 </html>
 ```
-
-We can provide interpolation data by passing a "render context object" as the second argument to `renderToString`:
-
+插值数据可以通过 "渲染上下文对象(render context object)" 作为`renderToString`的第二个参数：
+  
 ``` js
 const context = {
   title: 'hello',
@@ -138,12 +138,13 @@ renderer.renderToString(app, context, (err, html) => {
 })
 ```
 
-The `context` object can also be shared with the Vue app instance, allowing components to dynamically register data for template interpolation.
 
-In addition, the template supports some advanced features such as:
+上下文对象能在Vue实例内共享，允许组件为模板插值动态的注册数据。
+
+另外， 模板还支持一些高级的语法：
 
 - Auto injection of critical CSS when using `*.vue` components;
 - Auto injection of asset links and resource hints when using `clientManifest`;
 - Auto injection and XSS prevention when embedding Vuex state for client-side hydration.
 
-We will discuss these when we introduce the associated concepts later in the guide.
+在指南的相关章节我们还会继续讨论这个主题。
